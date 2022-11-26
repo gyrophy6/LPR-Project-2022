@@ -16,9 +16,10 @@ sprite_up = ['models/sprite_up_1.bmp', 'models/sprite_up_2.bmp', 'models/sprite_
 sprite_down = ['models/sprite_down_1.bmp', 'models/sprite_down_2.bmp', 'models/sprite_down_3.bmp']
 sprite_right = ['models/sprite_right_1.bmp', 'models/sprite_right_2.bmp', 'models/sprite_right_3.bmp']
 sprite_left = ['models/sprite_left_1.bmp', 'models/sprite_left_2.bmp', 'models/sprite_left_3.bmp']
+locations = ['models/map.bmp', 'models/map2.bmp']
 
-map = Map('models/map.bmp')
-name = MainCharacter(sprite_up, sprite_down, sprite_left, sprite_right, 700, 600, 4, 4, 3, 0)
+map = Map(locations, 0)
+name = MainCharacter(sprite_up, sprite_down, sprite_left, sprite_right, 700, 600, 4, 4, 3, 0, 0)
 exit = font_style.render("Exit", True, (0, 0, 0))
 
 while not finished:
@@ -26,6 +27,7 @@ while not finished:
         map.draw_map(screen, width, height)
 
         if i.type == pygame.MOUSEBUTTONDOWN:
+            print(i.pos[0], i.pos[1])
             if 5 <= i.pos[0] <= 205 and 170 <= i.pos[1] <= 220:
                 finished = True
 
@@ -37,6 +39,14 @@ while not finished:
             name.move_left()
         elif pygame.key.get_pressed()[pygame.K_d]:
             name.move_right()
+
+        character_position = name.get_position()
+        if character_position[0] - 330 >= 1390 and 700 <= character_position[1] - 230 <= 1000 and name.get_location() == 0:
+            name.change_location(1)
+            map.change_location(1)
+            name.go_to_the_door(330, 900)
+
+        print(character_position[0], character_position[1])
 
         name.draw_character(screen)
         screen.blit(exit, [5, 170])
