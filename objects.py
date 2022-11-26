@@ -61,4 +61,3 @@ class MainCharacter:
         self.character_sprite = pygame.image.load(self.pic_right[self.current_number]).convert()
 
 
-
