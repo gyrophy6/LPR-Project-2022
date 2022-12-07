@@ -16,25 +16,10 @@ pygame.init()
 font_style = pygame.font.SysFont('cambria', 50)
 font_style_small = pygame.font.SysFont('cambria', 25)
 
-#sprite_up = ['models/sprite_up_1.bmp', 'models/sprite_up_2.bmp', 'models/sprite_up_3.bmp']
-#sprite_down = ['models/sprite_down_1.bmp', 'models/sprite_down_2.bmp', 'models/sprite_down_3.bmp']
-#sprite_right = ['models/sprite_right_1.bmp', 'models/sprite_right_2.bmp', 'models/sprite_right_3.bmp']
-#sprite_left = ['models/sprite_left_1.bmp', 'models/sprite_left_2.bmp', 'models/sprite_left_3.bmp']
-
-#sprite_up = ['models/test_sprite.bmp', 'models/test_sprite.bmp', 'models/test_sprite.bmp']
-#sprite_down = ['models/test_sprite.bmp', 'models/test_sprite.bmp', 'models/test_sprite.bmp']
-#sprite_right = ['models/test_sprite.bmp', 'models/test_sprite.bmp', 'models/test_sprite.bmp']
-#sprite_left = ['models/test_sprite.bmp', 'models/test_sprite.bmp', 'models/test_sprite.bmp']
-
-#sprite_up = ['models/test_sprite.bmp', 'models/test_sprite.bmp', 'models/test_sprite.bmp']
-#sprite_down = ['models/test_sprite.bmp', 'models/test_sprite.bmp', 'models/test_sprite.bmp']
-#sprite_right = ['models/test_sprite.bmp', 'models/test_sprite.bmp', 'models/test_sprite.bmp']
-#sprite_left = ['models/test_sprite.bmp', 'models/test_sprite.bmp', 'models/test_sprite.bmp']
-
-sprite_up = ['models/simple_sprite_3.bmp', 'models/simple_sprite_3.bmp', 'models/simple_sprite_3.bmp']
-sprite_down = ['models/simple_sprite_3.bmp', 'models/simple_sprite_3.bmp', 'models/simple_sprite_3.bmp']
-sprite_right = ['models/simple_sprite_3.bmp', 'models/simple_sprite_3.bmp', 'models/simple_sprite_3.bmp']
-sprite_left = ['models/simple_sprite_3.bmp', 'models/simple_sprite_3.bmp', 'models/simple_sprite_3.bmp']
+sprite_up = ['models/sprite_up_1.bmp', 'models/sprite_up_2.bmp', 'models/sprite_up_3.bmp']
+sprite_down = ['models/sprite_down_1.bmp', 'models/sprite_down_2.bmp', 'models/sprite_down_3.bmp']
+sprite_right = ['models/sprite_right_1.bmp', 'models/sprite_right_2.bmp', 'models/sprite_right_3.bmp']
+sprite_left = ['models/sprite_left_1.bmp', 'models/sprite_left_2.bmp', 'models/sprite_left_3.bmp']
 
 locations = ['models/NK.bmp', 'models/corridor.bmp', 'models/classA.bmp', 'models/classB.bmp']
 

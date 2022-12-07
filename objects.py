@@ -39,8 +39,8 @@ class MainCharacter:
         self.pic_right = pic_right
         self.x = x
         self.y = y
-        self.dx = 4
-        self.dy = 4
+        self.dx = 8
+        self.dy = 8
         self.number = 3
         self.current_number = 0
         self.character_sprite = pygame.image.load(self.pic_down[1]).convert()
