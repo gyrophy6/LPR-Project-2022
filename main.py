@@ -1,14 +1,13 @@
-import pygame
 from objects import *
 import numpy as np
 
 width = 1200
 height = 800
 FPS = 120
+finished = False
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode((width, height))
 screen.fill((255, 255, 255))
-finished = False
 timer = 0
 
 pygame.init()
@@ -16,10 +15,21 @@ pygame.init()
 font_style = pygame.font.SysFont('cambria', 50)
 font_style_small = pygame.font.SysFont('cambria', 25)
 
-sprite_up = ['models/sprite_up_1.bmp', 'models/sprite_up_2.bmp', 'models/sprite_up_3.bmp']
-sprite_down = ['models/sprite_down_1.bmp', 'models/sprite_down_2.bmp', 'models/sprite_down_3.bmp']
-sprite_right = ['models/sprite_right_1.bmp', 'models/sprite_right_2.bmp', 'models/sprite_right_3.bmp']
-sprite_left = ['models/sprite_left_1.bmp', 'models/sprite_left_2.bmp', 'models/sprite_left_3.bmp']
+phrases_1 = ['I ain\'t joking. Ever.', 'You agree? Have recognized?', 'Not a season, but Season*',
+             'That was just like that']
+phrases_2 = ['Take exam ticket']
+
+
+exit = font_style.render("Exit", True, (255, 0, 0))
+fight = font_style.render("Fight", True, (255, 0, 0))
+talk = font_style.render("Talk", True, (0, 255, 0))
+start_game_text_1 = font_style_small.render("Oh, my head so hurts. Why i am hear? What time is it?...",
+                                            True, (255, 255, 255))
+start_game_text_2 = font_style_small.render("Oh no, my exam starts in 10 minutes, i have to hurry",
+                                            True, (255, 255, 255))
+end_game_text = font_style_small.render("You passed all exams. Congratulations!", True, (255, 255, 255))
+peaceful = font_style.render("It's not worth fighting with LM...", True, (255, 255, 255))
+
 
 locations = ['models/NK.bmp', 'models/corridor.bmp', 'models/classA.bmp', 'models/classB.bmp']
 
@@ -32,9 +42,7 @@ border1 = np.array([[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                     [0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
                     [0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
                     [0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
-                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]])
-
-border1 = border1.transpose()
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]).transpose()
 
 border2 = np.array([[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -45,9 +53,7 @@ border2 = np.array([[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                     [1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
                     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]])
-
-border2 = border2.transpose()
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]).transpose()
 
 border3 = np.array([[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -58,35 +64,23 @@ border3 = np.array([[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                     [0, 0, 0, 1, 0, 1, 0, 1, 0, 0],
                     [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
                     [0, 0, 0, 1, 0, 1, 0, 1, 0, 0],
-                    [0, 0, 0, 0, 0, 0, 0, 1, 0, 0]])
-
-border3 = border3.transpose()
+                    [0, 0, 0, 0, 0, 0, 0, 1, 0, 0]]).transpose()
 
 map = Map(locations, 0, border1)
-name = MainCharacter(sprite_up, sprite_down, sprite_left, sprite_right, 700, 600, 0)
+name = MainCharacter(700, 600, 0)
 heart = Heart('models/heart.bmp', 595, 520, 5, 5)
-phrases_1 = ['I ain\'t joking. Ever.', 'You agree? Have recognized?', 'Not a season, but Season*',
-             'That was just like that']
-phrases_2 = ['Take exam ticket']
 npc1 = NPC('Koldunov', 'models/Koldunov.bmp', 900, 400, phrases_1)
 npc2 = NPC('Nikolaenko', 'models/Nikolaenko.bmp', 880, 370, phrases_2)
 npc3 = NPC('Zhdanovskii', 'models/Zhdanovskii.bmp', 880, 370, phrases_2)
-exit = font_style.render("Exit", True, (255, 0, 0))
-fight = font_style.render("Fight", True, (255, 0, 0))
-talk = font_style.render("Talk", True, (0, 255, 0))
-start_game_text_1 = font_style_small.render("Oh, my head so hurts. Why i am hear? What time is it?...",
-                                            True, (255, 255, 255))
-start_game_text_2 = font_style_small.render("Oh no, my exam starts in 10 minutes, i have to hurry",
-                                            True, (255, 255, 255))
-end_game_text = font_style_small.render("You passed all exams. Congratulations!",
-                                            True, (255, 255, 255))
-peaceful = font_style.render("It's not worth fighting with LM...", True, (255, 255, 255))
+
+
 write_message_about_peaceful = False
 start_fire_1 = False
 start_fire_2 = False
 start_game = False
 finish_game = False
 time_fire = 0
+
 name.set_act_mode(True)
 
 while not finished:
@@ -134,7 +128,8 @@ while not finished:
             elif npc2.get_number_of_shots_type1() > 10 and timer - time_fire >= 2:
                 name.set_fight_mode(False)
                 if heart.get_hp() > 0:
-                    mark = font_style.render("Nikolaenko: Your mark is " + str(heart.get_hp()*2) + '/10', True, (255, 255, 255))
+                    mark = font_style.render("Nikolaenko: Your mark is " + str(heart.get_hp() * 2) + '/10', True,
+                                             (255, 255, 255))
                     name.pass_exam()
                     if name.show_marks() == 2:
                         finish_game = True
@@ -162,7 +157,7 @@ while not finished:
             elif npc3.get_number_of_shots_type2() > 5 and timer - time_fire >= 8:
                 name.set_fight_mode(False)
                 if heart.get_hp() > 0:
-                    mark = font_style.render("Zhdanovskii: Your mark is " + str(heart.get_hp()*2) + '/10',
+                    mark = font_style.render("Zhdanovskii: Your mark is " + str(heart.get_hp() * 2) + '/10',
                                              True, (255, 255, 255))
                     name.pass_exam()
                     if name.show_marks() == 2:
@@ -184,7 +179,7 @@ while not finished:
     clock.tick(FPS)
     for i in pygame.event.get():
         if i.type == pygame.QUIT:
-             finished = True
+            finished = True
 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if 5 <= i.pos[0] <= 205 and 0 <= i.pos[1] <= 70:
@@ -308,6 +303,6 @@ while not finished:
         npc_position = npc3.get_position()
         npc3.draw(screen, npc_position[0], npc_position[1])
 
-    timer += 1/120
+    timer += 1 / 120
     screen.blit(exit, [5, 10])
     pygame.display.update()

@@ -32,11 +32,11 @@ class Map:
 
 
 class MainCharacter:
-    def __init__(self, pic_up, pic_down, pic_left, pic_right, x, y, location):
-        self.pic_up = pic_up
-        self.pic_down = pic_down
-        self.pic_left = pic_left
-        self.pic_right = pic_right
+    def __init__(self, x, y, location):
+        self.pic_up = ['models/sprite_up_1.bmp', 'models/sprite_up_2.bmp', 'models/sprite_up_3.bmp']
+        self.pic_down = ['models/sprite_down_1.bmp', 'models/sprite_down_2.bmp', 'models/sprite_down_3.bmp']
+        self.pic_left = ['models/sprite_left_1.bmp', 'models/sprite_left_2.bmp', 'models/sprite_left_3.bmp']
+        self.pic_right = ['models/sprite_right_1.bmp', 'models/sprite_right_2.bmp', 'models/sprite_right_3.bmp']
         self.x = x
         self.y = y
         self.dx = 8
@@ -191,7 +191,7 @@ class NPC:
         return False
 
     def talk(self):
-        return self.name + ': ' + self.phrases[random.randint(0, len(self.phrases) -1)]
+        return self.name + ': ' + self.phrases[random.randint(0, len(self.phrases) - 1)]
 
 
 class Heart:
