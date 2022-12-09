@@ -15,7 +15,7 @@ font_style_small = pygame.font.SysFont('cambria', 25)
 exit = font_style.render("Exit", True, RED)
 fight = font_style.render("Fight", True, RED)  # Создание сообщений, которые будут выводиться на экран
 talk = font_style.render("Talk", True, GREEN)
-start_game_text_1 = font_style_small.render("Oh, my head so hurts. Why i am hear? What time is it?...",
+start_game_text_1 = font_style_small.render("Oh, my head so hurts. Why i am here? What time is it?...",
                                             True, WHITE)
 start_game_text_2 = font_style_small.render("Oh no, my exam starts in 10 minutes, i have to hurry",
                                             True, WHITE)
