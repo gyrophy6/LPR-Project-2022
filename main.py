@@ -37,6 +37,8 @@ start_game = False
 finish_game = False
 time_fire = 0
 
+#Этот коммент написала Глаша (АА)
+
 name.set_act_mode(True)  # Установить режим коммуникации
 
 while not finished:  # Пока игра не закончилась
